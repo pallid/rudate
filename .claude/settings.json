@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l *.go)",
+      "Bash(ollama list:*)",
+      "Bash(RUDATE_LLM_BENCH=1 RUDATE_LLM_MODEL=llama3:latest go test -v -run TestLLMAccuracy -timeout 600s 2>&1)",
+      "Bash(RUDATE_LLM_BENCH=1 RUDATE_LLM_MODEL=llama3.1:8b go test -v -run TestLLMAccuracy -timeout 600s 2>&1)",
+      "Bash(RUDATE_LLM_BENCH=1 RUDATE_LLM_MODEL=qwen3:8b go test -v -run TestLLMAccuracy -timeout 600s 2>&1)",
+      "Bash(RUDATE_LLM_BENCH=1 RUDATE_LLM_MODEL=qwen3.5:latest go test -v -run TestLLMAccuracy -timeout 600s 2>&1)",
+      "Bash(RUDATE_LLM_BENCH=1 RUDATE_LLM_MODEL=qwen3:8b go test -v -run TestLLMAccuracyNoThink -timeout 600s 2>&1)",
+      "Bash(RUDATE_LLM_BENCH=1 RUDATE_LLM_MODEL=qwen3.5:latest go test -v -run TestLLMAccuracyNoThink -timeout 600s 2>&1)"
+    ]
+  }
+}
