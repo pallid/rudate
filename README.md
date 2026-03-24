@@ -2,7 +2,7 @@
 
 [![Go](https://img.shields.io/github/go-mod/go-version/pallid/rudate)](https://github.com/pallid/rudate)
 [![Test](https://github.com/pallid/rudate/actions/workflows/ci.yml/badge.svg)](https://github.com/pallid/rudate/actions)
-[![codecov](https://codecov.io/gh/pallid/rudate/branch/master/graph/badge.svg)](https://codecov.io/gh/pallid/rudate)
+[![codecov](https://img.shields.io/codecov/c/github/pallid/rudate)](https://codecov.io/github/pallid/rudate)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Парсинг дат и времени на русском языке для Go.
