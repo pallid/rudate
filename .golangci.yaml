@@ -18,6 +18,8 @@ linters:
       check-type-assertions: true
     govet:
       enable-all: true
+      disable:
+        - fieldalignment
 
 formatters:
   enable:
