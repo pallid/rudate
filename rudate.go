@@ -15,7 +15,6 @@
 package rudate
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -96,7 +95,7 @@ func MustParse(text string, base time.Time, opts ...Option) time.Time {
 func Extract(text string, base time.Time, opts ...Option) (time.Time, int, int, error) {
 	matches := ExtractAll(text, base, opts...)
 	if len(matches) == 0 {
-		return time.Time{}, 0, 0, fmt.Errorf("rudate: дата/время не найдена в тексте")
+		return time.Time{}, 0, 0, ErrNotFound
 	}
 	m := matches[0]
 	return m.Time, m.Start, m.End, nil
@@ -188,7 +187,7 @@ func ExtractAll(text string, base time.Time, opts ...Option) []Match {
 func ParseDuration(text string, base time.Time, opts ...Option) (time.Duration, error) {
 	t, err := Parse(text+" назад", base, opts...)
 	if err != nil {
-		return 0, fmt.Errorf("rudate: не удалось распознать длительность: %w", err)
+		return 0, &ParseError{Inner: ErrNoDuration}
 	}
 	return base.Sub(t), nil
 }

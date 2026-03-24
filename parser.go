@@ -1,7 +1,7 @@
 package rudate
 
 import (
-	"fmt"
+	"errors"
 	"time"
 )
 
@@ -17,10 +17,10 @@ type Parser struct {
 
 type options struct {
 	preferFuture   bool
-	defaultMorning int // default hour for "утром"
-	defaultDay     int // default hour for "днём"
-	defaultEvening int // default hour for "вечером"
-	defaultNight   int // default hour for "ночью"
+	defaultMorning int  // default hour for "утром"
+	defaultDay     int  // default hour for "днём"
+	defaultEvening int  // default hour for "вечером"
+	defaultNight   int  // default hour for "ночью"
 	fuzzy          bool // enable fuzzy matching for typos
 }
 
@@ -166,7 +166,7 @@ func (p *Parser) Parse() (time.Time, error) {
 	}
 
 	if !dateSet && !timeSet {
-		return time.Time{}, fmt.Errorf("rudate: не удалось распознать дату/время")
+		return time.Time{}, &ParseError{Inner: errors.New("unable to parse date/time")}
 	}
 
 	return p.result, nil
