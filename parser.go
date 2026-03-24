@@ -53,15 +53,6 @@ func (p *Parser) current() Token {
 	return p.tokens[p.pos]
 }
 
-// peek returns the token at offset from current position.
-func (p *Parser) peek(offset int) Token {
-	idx := p.pos + offset
-	if idx >= len(p.tokens) || idx < 0 {
-		return Token{Type: TOK_EOF}
-	}
-	return p.tokens[idx]
-}
-
 // advance moves to the next token.
 func (p *Parser) advance() Token {
 	t := p.current()
@@ -69,14 +60,6 @@ func (p *Parser) advance() Token {
 		p.pos++
 	}
 	return t
-}
-
-// expect consumes the current token if it matches the given type.
-func (p *Parser) expect(tt TokenType) (Token, bool) {
-	if p.current().Type == tt {
-		return p.advance(), true
-	}
-	return Token{}, false
 }
 
 // skipWords skips any TOK_WORD tokens (noise words like "мне", "меня", etc.)
@@ -257,7 +240,7 @@ func (p *Parser) tryRelative() (time.Time, bool) {
 func (p *Parser) readAmountUnit() (float64, TokenType, bool) {
 	saved := p.pos
 
-	var amount float64 = 1
+	var amount float64
 
 	cur := p.current()
 	switch {
@@ -271,9 +254,7 @@ func (p *Parser) readAmountUnit() (float64, TokenType, bool) {
 		amount = 0.25
 		p.advance()
 	case cur.isUnit():
-		// Implicit 1, e.g., "минуту назад", "час назад"
 		amount = 1
-		// Don't advance — the unit check below will handle it
 	default:
 		p.pos = saved
 		return 0, 0, false

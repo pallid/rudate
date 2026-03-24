@@ -86,24 +86,24 @@ var dictionary = map[string]Token{
 	"вторника": {Type: TOK_WEEKDAY, Value: float64(time.Tuesday)},
 	"вт":       {Type: TOK_WEEKDAY, Value: float64(time.Tuesday)},
 
-	"среда":  {Type: TOK_WEEKDAY, Value: float64(time.Wednesday)},
-	"среду":  {Type: TOK_WEEKDAY, Value: float64(time.Wednesday)},
-	"среды":  {Type: TOK_WEEKDAY, Value: float64(time.Wednesday)},
-	"ср":     {Type: TOK_WEEKDAY, Value: float64(time.Wednesday)},
+	"среда": {Type: TOK_WEEKDAY, Value: float64(time.Wednesday)},
+	"среду": {Type: TOK_WEEKDAY, Value: float64(time.Wednesday)},
+	"среды": {Type: TOK_WEEKDAY, Value: float64(time.Wednesday)},
+	"ср":    {Type: TOK_WEEKDAY, Value: float64(time.Wednesday)},
 
 	"четверг":  {Type: TOK_WEEKDAY, Value: float64(time.Thursday)},
 	"четверга": {Type: TOK_WEEKDAY, Value: float64(time.Thursday)},
 	"чт":       {Type: TOK_WEEKDAY, Value: float64(time.Thursday)},
 
-	"пятница":  {Type: TOK_WEEKDAY, Value: float64(time.Friday)},
-	"пятницу":  {Type: TOK_WEEKDAY, Value: float64(time.Friday)},
-	"пятницы":  {Type: TOK_WEEKDAY, Value: float64(time.Friday)},
-	"пт":       {Type: TOK_WEEKDAY, Value: float64(time.Friday)},
+	"пятница": {Type: TOK_WEEKDAY, Value: float64(time.Friday)},
+	"пятницу": {Type: TOK_WEEKDAY, Value: float64(time.Friday)},
+	"пятницы": {Type: TOK_WEEKDAY, Value: float64(time.Friday)},
+	"пт":      {Type: TOK_WEEKDAY, Value: float64(time.Friday)},
 
-	"суббота":  {Type: TOK_WEEKDAY, Value: float64(time.Saturday)},
-	"субботу":  {Type: TOK_WEEKDAY, Value: float64(time.Saturday)},
-	"субботы":  {Type: TOK_WEEKDAY, Value: float64(time.Saturday)},
-	"сб":       {Type: TOK_WEEKDAY, Value: float64(time.Saturday)},
+	"суббота": {Type: TOK_WEEKDAY, Value: float64(time.Saturday)},
+	"субботу": {Type: TOK_WEEKDAY, Value: float64(time.Saturday)},
+	"субботы": {Type: TOK_WEEKDAY, Value: float64(time.Saturday)},
+	"сб":      {Type: TOK_WEEKDAY, Value: float64(time.Saturday)},
 
 	"воскресенье":  {Type: TOK_WEEKDAY, Value: float64(time.Sunday)},
 	"воскресенья":  {Type: TOK_WEEKDAY, Value: float64(time.Sunday)},
@@ -161,8 +161,8 @@ var dictionary = map[string]Token{
 	"полторы":     {Type: TOK_SPECIAL_ONEANDHALF, Value: 1.5},
 
 	// === Time of day ===
-	"утра":    {Type: TOK_DAYTIME_MORNING},
-	"утром":   {Type: TOK_DAYTIME_MORNING},
+	"утра":  {Type: TOK_DAYTIME_MORNING},
+	"утром": {Type: TOK_DAYTIME_MORNING},
 	// NOTE: "дня" is NOT here — it's listed under TOK_UNIT_DAY.
 	// Disambiguation happens in the parser: after NUM + HOUR → daytime; after NUM → unit.
 	"днём":    {Type: TOK_DAYTIME_DAY},

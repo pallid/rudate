@@ -37,17 +37,17 @@ const (
 	TOK_MONTH
 
 	// Special words
-	TOK_SPECIAL_NOW            // сейчас
-	TOK_SPECIAL_TODAY          // сегодня
-	TOK_SPECIAL_YESTERDAY      // вчера
-	TOK_SPECIAL_TOMORROW       // завтра
-	TOK_SPECIAL_DAYBEFOREYEST  // позавчера
-	TOK_SPECIAL_DAYAFTERTOM    // послезавтра
-	TOK_SPECIAL_NOON           // полдень
-	TOK_SPECIAL_MIDNIGHT       // полночь
-	TOK_SPECIAL_HALF           // пол- (полчаса, полгода)
-	TOK_SPECIAL_QUARTER        // четверть
-	TOK_SPECIAL_ONEANDHALF     // полтора/полторы
+	TOK_SPECIAL_NOW           // сейчас
+	TOK_SPECIAL_TODAY         // сегодня
+	TOK_SPECIAL_YESTERDAY     // вчера
+	TOK_SPECIAL_TOMORROW      // завтра
+	TOK_SPECIAL_DAYBEFOREYEST // позавчера
+	TOK_SPECIAL_DAYAFTERTOM   // послезавтра
+	TOK_SPECIAL_NOON          // полдень
+	TOK_SPECIAL_MIDNIGHT      // полночь
+	TOK_SPECIAL_HALF          // пол- (полчаса, полгода)
+	TOK_SPECIAL_QUARTER       // четверть
+	TOK_SPECIAL_ONEANDHALF    // полтора/полторы
 
 	// Time of day
 	TOK_DAYTIME_MORNING // утра/утром
