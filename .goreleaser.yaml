@@ -2,6 +2,8 @@ version: 2
 
 project_name: rudate
 
+dist: ""
+
 archives:
   - format: tar.gz
     format_overrides:
