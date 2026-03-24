@@ -1,4 +1,4 @@
-version: 2
+version: "2"
 
 run:
   timeout: 5m
@@ -18,7 +18,7 @@ formatters:
   enable:
     - goimports
 
-linters-settings:
+lintersettings:
   errcheck:
     check-type-assertions: true
   govet:
@@ -27,4 +27,4 @@ linters-settings:
     local-prefixes: github.com/pallid/rudate
 
 issues:
-  exclude-use-default: false
+  exclude: []
