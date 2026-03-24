@@ -1,43 +1,19 @@
-before:
-  hooks:
-    - go mod tidy
+version: 2
 
-builds:
-  - id: rudate
-    dir: .
-    env:
-      - CGO_ENABLED=0
-    goos:
-      - linux
-      - darwin
-      - windows
-    goarch:
-      - amd64
-      - arm64
-    goarm:
-      - v7
-    ignore:
-      - goarch: arm64
-        goos: windows
-    flags:
-      - -trimpath
+project_name: rudate
 
 archives:
-  - id: rudate
-    format: tar.gz
+  - format: tar.gz
     format_overrides:
       - goos: windows
         format: zip
     files:
-      - "!tests"
+      - "!*_test.go"
       - "!testdata"
-      - "!**/*.go"
+      - "!examples"
 
 checksum:
   name_template: "checksums.txt"
-
-snapshot:
-  name_template: "{{ .Tag }}-next"
 
 changelog:
   disable: true
