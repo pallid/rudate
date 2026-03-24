@@ -2,7 +2,7 @@ version: 2
 
 project_name: rudate
 
-dist: ""
+builds: []
 
 archives:
   - format: tar.gz
