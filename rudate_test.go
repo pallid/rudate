@@ -1,6 +1,7 @@
 package rudate
 
 import (
+	"strings"
 	"testing"
 	"time"
 )
@@ -192,8 +193,8 @@ func TestDates(t *testing.T) {
 		expected time.Time
 	}{
 		{"25 декабря", date(2025, 12, 25)},
-		{"1 января", date(2026, 1, 1)},   // already passed → next year
-		{"15 марта", date(2025, 3, 15)},   // today
+		{"1 января", date(2026, 1, 1)},  // already passed → next year
+		{"15 марта", date(2025, 3, 15)}, // today
 	}
 
 	for _, c := range cases {
@@ -314,8 +315,8 @@ func TestDateDotFormat(t *testing.T) {
 		{"25.12.2025", date(2025, 12, 25)},
 		{"01.01.2026", date(2026, 1, 1)},
 		{"15.03.2025", date(2025, 3, 15)},
-		{"25.12", date(2025, 12, 25)},          // this year (future)
-		{"01.01", date(2026, 1, 1)},             // already passed → next year
+		{"25.12", date(2025, 12, 25)}, // this year (future)
+		{"01.01", date(2026, 1, 1)},   // already passed → next year
 	}
 
 	for _, c := range cases {
@@ -398,6 +399,67 @@ func TestDateTimeCombos(t *testing.T) {
 			}
 			if !got.Equal(c.expected) {
 				t.Errorf("Parse(%q) = %v, want %v", c.input, got, c.expected)
+			}
+		})
+	}
+}
+
+func TestEdgeCases(t *testing.T) {
+	cases := []struct {
+		name    string
+		input   string
+		wantErr bool
+	}{
+		{"empty string", "", true},
+		{"whitespace only", "   ", true},
+		{"just spaces", " ", true},
+		{"tabs and spaces", "\t\n ", true},
+		{"random text", "привет мир", true},
+		{"special chars only", "!@#$%^&*()", true},
+		{"numbers only", "12345", true},
+		{"emoji", "📅 сегодня", false},
+		{"very long string", strings.Repeat("а", 10000), true},
+		{"garbage", "фывапролджаэ", true},
+		{"single letter", "а", true},
+	}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			_, err := Parse(c.input, base)
+			if c.wantErr && err == nil {
+				t.Errorf("Parse(%q) expected error, got nil", c.input)
+			}
+			if !c.wantErr && err != nil {
+				t.Errorf("Parse(%q) unexpected error: %v", c.input, err)
+			}
+		})
+	}
+}
+
+func TestInvalidDates(t *testing.T) {
+	cases := []struct {
+		name    string
+		input   string
+		wantErr bool
+	}{
+		{"february 31", "31 февраля", false},
+		{"june 31", "31 июня", false},
+		{"impossible date", "32 января", false},
+		{"zero day", "0 января", false},
+		{"negative day", "-5 января", false},
+		{"hour 25", "25:00", false},
+		{"minute 70", "12:70", true},
+		{"negative year", "1 января -100", false},
+	}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			_, err := Parse(c.input, base)
+			if c.wantErr && err == nil {
+				t.Errorf("Parse(%q) expected error, got nil", c.input)
+			}
+			if !c.wantErr && err != nil {
+				t.Errorf("Parse(%q) unexpected error: %v", c.input, err)
 			}
 		})
 	}
